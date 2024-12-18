@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrument Cluster</title>
+</head>
+<body>
+    <h1 id="connectedStatus">NOT CONNECTED</h1>
+    <h1>23 mph</h1>
+    <h3>1500 rpm</h3>
+    <h3>Gear: D</h3>
+</body>
+<script src="socket.io.min.4.8.1.js"></script>
+<script>
+    var socket = io('http://localhost:3000', { reconnectionDelay: 500, reconnectionDelayMax: 500 })
+
+    socket.on('connect', function() {
+        document.getElementById('connectedStatus').innerText = 'CONNECTED'
+    })
+    socket.on('disconnect', function() {
+        document.getElementById('connectedStatus').innerText = 'DISCONNECTED'
+    })
+</script>
+</html>
